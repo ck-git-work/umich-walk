@@ -85,11 +85,15 @@
     const s = document.createElement('script');
     s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
     s.onload = () => {
-      const m = L.map('leaflet', { scrollWheelZoom: false }).setView([42.278, -83.740], 15);
+      const m = L.map('leaflet', { scrollWheelZoom: false, zoomSnap: 0.25 });
+      // Open framed on the walking route plus the food spots; the dorms and Arb are a swipe away.
+      const bounds = L.geoJSON(DATA.routes.features.find(f => f.properties.id === 'main')).getBounds();
+      DATA.places.filter(p => p.layer === 'food').forEach(p => bounds.extend([p.lat, p.lng]));
+      m.fitBounds(bounds, { padding: [14, 14], animate: false });
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
         { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(m);
       const lineColor = id => '#' + (DATA.layers[id].line_color || DATA.layers[id].color);
-      const g = L.geoJSON(DATA.routes, { style: f => ({ color: lineColor(f.properties.layer),
+      L.geoJSON(DATA.routes, { style: f => ({ color: lineColor(f.properties.layer),
         weight: f.properties.id === 'main' ? 5 : 4, opacity: .95, lineCap: 'round',
         dashArray: f.properties.id === 'main' ? '1 9' : '1 8' }) }).addTo(m);
       DATA.places.forEach(p => {
@@ -100,7 +104,6 @@
           html: `<div style="position:relative;width:${size}px;height:${size}px;border-radius:50%;background:${c};color:#fff;border:1.5px solid #fff;display:grid;place-items:center;font:700 10px sans-serif;box-shadow:0 1px 2px #0005">${p.order || ''}${badge}</div>` });
         L.marker([p.lat, p.lng], { icon }).bindPopup(`<b>${p.order ? p.order + '. ' : ''}${p.name}</b>${p.note ? '<br>' + p.note : ''}`).addTo(m);
       });
-      m.fitBounds(g.getBounds(), { padding: [8, 8] });
     };
     document.head.appendChild(s);
   }
