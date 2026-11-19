@@ -1,7 +1,7 @@
 {
-  "title": "A Walk Around Ann Arbor & U-M",
+  "title": "Ann Arbor Overview",
   "mymaps_mid": "",
-  "intro": "A big loop through downtown and central campus for Will's visit.",
+  "intro": "My suggested walking route to get a sense of the campus and Ann Arbor itself.",
   "layers": {
     "route": {"name": "Suggested stops", "color": "00274C", "line_color": "00274C", "key": "Walking route and suggested stops"},
     "hill": {"name": "Hill dorms (optional)", "color": "2E7D32", "line_color": "2E7D32", "key": "Optional tour of the Hill dorms"},
