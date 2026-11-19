@@ -32,7 +32,10 @@ def pin_title(p):
 
 def write_kml(data, routes, layer_id):
     layer = data["layers"][layer_id]
-    places = sorted((p for p in data["places"] if p["layer"] == layer_id), key=lambda p: p.get("order", 0))
+    # Numbered stops flagged "food" also get a pin on the Food layer.
+    places = sorted((p for p in data["places"]
+                     if p["layer"] == layer_id or (layer_id == "food" and p.get("food"))),
+                    key=lambda p: p.get("order", 0))
     lines = [f for f in routes["features"] if f["properties"]["layer"] == layer_id]
     e = html.escape
     out = [
@@ -67,14 +70,16 @@ def write_kml(data, routes, layer_id):
     print("wrote", path.relative_to(ROOT), f"({len(places)} pins, {len(lines)} lines)")
 
 
-def list_item(p, color, numbered=False):
-    """One compact line: marker, bold name, optional address, then the note."""
+def list_item(p, color, numbered=False, food_color=None):
+    """One compact line: marker, bold name, optional food dot and address, then the note."""
     e = html.escape
     marker = (f'<span class="n">{p["order"]}</span>' if numbered
               else f'<span class="d" style="background:#{color}"></span>')
+    food = (f' <span class="fd" style="background:#{food_color}" title="Food"></span>'
+            if p.get("food") and food_color else "")
     addr = f' <span class="addr">· {e(p["address"])}</span>' if p.get("address") else ""
     note = f' {e(p["note"])}' if p.get("note") else ""
-    return f"<li>{marker}<span><b>{e(p['name'])}</b>{addr}.{note}</span></li>"
+    return f"<li>{marker}<span><b>{e(p['name'])}</b>{food}{addr}.{note}</span></li>"
 
 
 def map_key(data, routes):
@@ -118,7 +123,7 @@ def build_page(data, routes):
         "{{OPEN_URL}}": open_url,
         "{{OPEN_HIDDEN}}": "" if mid else " hidden",
         "{{WALK_MI}}": f"{walk_mi:.1f}",
-        "{{STOPS}}": "\n".join(list_item(p, color("route"), True)
+        "{{STOPS}}": "\n".join(list_item(p, color("route"), True, color("food"))
                                for p in sorted(by_layer("route"), key=lambda p: p["order"])),
         "{{HILL}}": list_item(palmer, color("hill")) + "\n" + dorm_line,
         "{{EXTRAS}}": "\n".join(list_item(p, color("extras")) for p in by_layer("extras")),

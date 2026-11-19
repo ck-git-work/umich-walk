@@ -3,6 +3,8 @@
 <name>Food</name>
 <Style id="pin"><IconStyle><color>ff2828C6</color><scale>1.1</scale><Icon><href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href></Icon></IconStyle></Style>
 <Style id="line"><LineStyle><color>e62828C6</color><width>4</width></LineStyle></Style>
-<Placemark><name>Pizza House</name><styleUrl>#pin</styleUrl><description><![CDATA[Great undergrad food, a block off the East University leg.<br><br>618 Church St]]></description><Point><coordinates>-83.73479,42.27419,0</coordinates></Point></Placemark>
-<Placemark><name>Frita Batidos</name><styleUrl>#pin</styleUrl><description><![CDATA[A newer place that's good. Cuban-inspired street food, downtown.<br><br>117 W Washington St]]></description><Point><coordinates>-83.74936,42.28041,0</coordinates></Point></Placemark>
+<Placemark><name>Pizza House</name><styleUrl>#pin</styleUrl><description><![CDATA[I think I may have eaten more meals at this place than any other restaurant.<br><br>618 Church St]]></description><Point><coordinates>-83.73479,42.27419,0</coordinates></Point></Placemark>
+<Placemark><name>Frita Batidos</name><styleUrl>#pin</styleUrl><description><![CDATA[A place that didn't exist when I was here, but I feel like for a version of me 20 years younger, this would be high on my list.<br><br>117 W Washington St]]></description><Point><coordinates>-83.74936,42.28041,0</coordinates></Point></Placemark>
+<Placemark><name>Blimpy Burger</name><styleUrl>#pin</styleUrl><description><![CDATA[The classic Ann Arbor burger spot. Just reopened this fall under new owners with the same core menu.<br><br>304 S Ashley St]]></description><Point><coordinates>-83.75012,42.27941,0</coordinates></Point></Placemark>
+<Placemark><name>3 · Zingerman&#x27;s Deli</name><styleUrl>#pin</styleUrl><description><![CDATA[The classic Ann Arbor deli. If College GameDay is ever in Ann Arbor, you'll see a shot of Zingerman's.<br><br>422 Detroit St]]></description><Point><coordinates>-83.74515,42.2847,0</coordinates></Point></Placemark>
 </Document></kml>

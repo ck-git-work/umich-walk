@@ -37,6 +37,7 @@
   .k { display: flex; align-items: center; gap: 2px; }
   .k svg { flex: none; }
   .k .d { margin: 0 8px 0 3px; }
+  .fd { display: inline-block; width: 9px; height: 9px; margin: 0 1px 1px 3px; border-radius: 50%; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -94,8 +95,9 @@
       DATA.places.forEach(p => {
         const c = '#' + DATA.layers[p.layer].color;
         const size = p.order ? 18 : 12;
+        const badge = p.food ? `<div style="position:absolute;top:-4px;right:-5px;width:9px;height:9px;border-radius:50%;background:#${DATA.layers.food.color};border:1.5px solid #fff"></div>` : '';
         const icon = L.divIcon({ className: '', iconSize: [size, size], iconAnchor: [size / 2, size / 2],
-          html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${c};color:#fff;border:1.5px solid #fff;display:grid;place-items:center;font:700 10px sans-serif;box-shadow:0 1px 2px #0005">${p.order || ''}</div>` });
+          html: `<div style="position:relative;width:${size}px;height:${size}px;border-radius:50%;background:${c};color:#fff;border:1.5px solid #fff;display:grid;place-items:center;font:700 10px sans-serif;box-shadow:0 1px 2px #0005">${p.order || ''}${badge}</div>` });
         L.marker([p.lat, p.lng], { icon }).bindPopup(`<b>${p.order ? p.order + '. ' : ''}${p.name}</b>${p.note ? '<br>' + p.note : ''}`).addTo(m);
       });
       m.fitBounds(g.getBounds(), { padding: [8, 8] });

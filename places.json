@@ -14,7 +14,7 @@
     {"id": "main", "layer": "route", "order": 2, "name": "Main Street",
      "lat": 42.28200, "lng": -83.74855,
      "note": "Downtown is the more grown-up part of Ann Arbor. I'd think of it as where you and Caitlin would come if Will ended up going here, or where you'd go if you wanted to take Will out somewhere nicer than a typical college-town restaurant."},
-    {"id": "zingermans", "layer": "route", "order": 3, "name": "Zingerman's Deli",
+    {"id": "zingermans", "layer": "route", "order": 3, "name": "Zingerman's Deli", "food": true,
      "lat": 42.28470, "lng": -83.74515, "address": "422 Detroit St",
      "note": "The classic Ann Arbor deli. If College GameDay is ever in Ann Arbor, you'll see a shot of Zingerman's."},
     {"id": "liberty", "layer": "route", "order": 4, "name": "East Liberty Street",
@@ -67,9 +67,11 @@
      "note": "Frita Batidos is just past Main on W Washington if you're hungry."},
 
     {"id": "f_pizzahouse", "layer": "food", "name": "Pizza House", "lat": 42.27419, "lng": -83.73479, "address": "618 Church St",
-     "note": "Great undergrad food, a block off the East University leg."},
+     "note": "I think I may have eaten more meals at this place than any other restaurant."},
     {"id": "f_frita", "layer": "food", "name": "Frita Batidos", "lat": 42.28041, "lng": -83.74936, "address": "117 W Washington St",
-     "note": "A newer place that's good. Cuban-inspired street food, downtown."},
+     "note": "A place that didn't exist when I was here, but I feel like for a version of me 20 years younger, this would be high on my list."},
+    {"id": "f_blimpy", "layer": "food", "name": "Blimpy Burger", "lat": 42.27941, "lng": -83.75012, "address": "304 S Ashley St",
+     "note": "The classic Ann Arbor burger spot. Just reopened this fall under new owners with the same core menu."},
 
     {"id": "h_palmer", "layer": "hill", "name": "Palmer Field", "lat": 42.28066, "lng": -83.73271,
      "note": "The main freshman dorms are all around this field. If Will lives in the dorms freshman year, in all likelihood it'll be one of the ones up here on what's called the Hill."},
