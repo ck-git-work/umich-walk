@@ -1,8 +1,9 @@
 {
   "title": "A Walk Around Ann Arbor & U-M",
   "mymaps_mid": "",
+  "intro": "A big loop through downtown and central campus for Will's visit.",
   "layers": {
-    "route": {"name": "The walk (numbered stops)", "color": "00274C", "line_color": "FFCB05"},
+    "route": {"name": "Suggested stops", "color": "00274C", "line_color": "00274C"},
     "food": {"name": "Food (budget classics)", "color": "E65100"},
     "hill": {"name": "Hill dorms (optional detour)", "color": "2E7D32", "line_color": "2E7D32"},
     "extras": {"name": "Extras: the Arb & North Campus", "color": "6A1B9A", "line_color": "6A1B9A"}
@@ -63,25 +64,20 @@
      "lat": 42.27975, "lng": -83.74840,
      "note": "Head west on Liberty back to Main Street. The start is one block south."},
 
-    {"id": "f_zing", "layer": "food", "name": "Zingerman's Deli", "lat": 42.28470, "lng": -83.74515, "address": "422 Detroit St",
-     "note": "The classic (also stop 3)."},
     {"id": "f_cottage", "layer": "food", "name": "Cottage Inn Pizza", "lat": 42.27197, "lng": -83.74213, "address": "546 Packard St",
      "note": "Classic undergrad pizza."},
     {"id": "f_pizzahouse", "layer": "food", "name": "Pizza House", "lat": 42.27419, "lng": -83.73479, "address": "618 Church St",
      "note": "Great undergrad food, a block off the East University leg."},
     {"id": "f_frita", "layer": "food", "name": "Frita Batidos", "lat": 42.28041, "lng": -83.74936, "address": "117 W Washington St",
      "note": "A newer place that's good. Cuban-inspired street food, downtown."},
-    {"id": "f_union", "layer": "food", "name": "Michigan Union", "lat": 42.27517, "lng": -83.74151, "address": "530 S State St",
-     "note": "Some food options inside (also stop 15)."},
 
     {"id": "h_palmer", "layer": "hill", "name": "Palmer Field", "lat": 42.28066, "lng": -83.73271,
      "note": "The main freshman dorms are all around this field. This is where Will might live freshman year."},
-    {"id": "h_stockwell", "layer": "hill", "name": "Stockwell Hall", "lat": 42.27886, "lng": -83.73177,
-     "note": "Freshman dorm on Observatory St."},
-    {"id": "h_mojo", "layer": "hill", "name": "Mosher-Jordan (\"MoJo\")", "lat": 42.28015, "lng": -83.73170,
-     "note": "Freshman dorm on Observatory St."},
-    {"id": "h_alicelloyd", "layer": "hill", "name": "Alice Lloyd Hall", "lat": 42.28125, "lng": -83.73176,
-     "note": "Freshman dorm on Observatory St. Couzens and Markley are nearby too."},
+    {"id": "h_stockwell", "layer": "hill", "name": "Stockwell", "lat": 42.27886, "lng": -83.73177, "note": ""},
+    {"id": "h_mojo", "layer": "hill", "name": "Mosher-Jordan (MoJo)", "lat": 42.28015, "lng": -83.73170, "note": ""},
+    {"id": "h_alicelloyd", "layer": "hill", "name": "Alice Lloyd", "lat": 42.28125, "lng": -83.73176, "note": ""},
+    {"id": "h_couzens", "layer": "hill", "name": "Couzens", "lat": 42.28193, "lng": -83.73266, "note": ""},
+    {"id": "h_markley", "layer": "hill", "name": "Markley", "lat": 42.28088, "lng": -83.72888, "note": ""},
 
     {"id": "x_arb", "layer": "extras", "name": "Nichols Arboretum (the Arb)", "lat": 42.27908, "lng": -83.72238,
      "note": "If it's a really nice day and you have time. It's right next to the Hill dorms, so it's an easy add-on to that detour: from Observatory St, walk east to the end of Washington Heights and you're at the edge of the Arb. The trails head down to the Huron River."},

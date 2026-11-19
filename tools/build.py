@@ -67,15 +67,14 @@ def write_kml(data, routes, layer_id):
     print("wrote", path.relative_to(ROOT), f"({len(places)} pins, {len(lines)} lines)")
 
 
-def stop_card(p, numbered=True):
+def list_item(p, color, numbered=False):
+    """One compact line: marker, bold name, optional address, then the note."""
     e = html.escape
-    num = f'<span class="num">{p["order"]}</span>' if numbered and p.get("order") else '<span class="dot"></span>'
-    addr = f'<div class="addr">{e(p["address"])}</div>' if p.get("address") else ""
-    return (
-        f'<li class="stop">{num}<div class="body"><h3>{e(p["name"])}</h3>{addr}'
-        f'<p>{e(p["note"])}</p>'
-        f'<a class="dir" href="{directions_url(p)}" target="_blank" rel="noopener">Walking directions ↗</a></div></li>'
-    )
+    marker = (f'<span class="n">{p["order"]}</span>' if numbered
+              else f'<span class="d" style="background:#{color}"></span>')
+    addr = f' <span class="addr">· {e(p["address"])}</span>' if p.get("address") else ""
+    note = f' {e(p["note"])}' if p.get("note") else ""
+    return f"<li>{marker}<span><b>{e(p['name'])}</b>{addr}.{note}</span></li>"
 
 
 def build_page(data, routes):
@@ -94,21 +93,22 @@ def build_page(data, routes):
         map_block = '<div class="map" id="leaflet"></div>'
         open_url = "#"
 
-    hill = {p["id"]: p for p in by_layer("hill")}
-    extras = {p["id"]: p for p in by_layer("extras")}
+    color = lambda lid: data["layers"][lid]["color"]
+    palmer, *dorms = by_layer("hill")  # Palmer Field first, then the dorms (names only)
+    dorm_line = (f'<li><span class="d" style="background:#{color("hill")}"></span><span><b>Freshman dorms:</b> '
+                 + ", ".join(html.escape(d["name"]) for d in dorms) + "</span></li>")
     replacements = {
         "{{TITLE}}": html.escape(data["title"]),
+        "{{INTRO}}": html.escape(data.get("intro", "")),
         "{{MAP}}": map_block,
         "{{OPEN_URL}}": open_url,
         "{{OPEN_HIDDEN}}": "" if mid else " hidden",
         "{{WALK_MI}}": f"{walk_mi:.1f}",
-        "{{WALK_MIN}}": str(walk_min),
-        "{{HILL_MI}}": f"{meters['hill'] / MI:.1f}",
-        "{{STOPS}}": "\n".join(stop_card(p) for p in sorted(by_layer("route"), key=lambda p: p["order"])),
-        "{{HILL}}": "\n".join(stop_card(hill[k], False) for k in ("h_palmer", "h_stockwell", "h_mojo", "h_alicelloyd")),
-        "{{ARB}}": stop_card(extras["x_arb"], False),
-        "{{NORTH}}": stop_card(extras["x_north"], False),
-        "{{FOOD}}": "\n".join(stop_card(p, False) for p in by_layer("food")),
+        "{{STOPS}}": "\n".join(list_item(p, color("route"), True)
+                               for p in sorted(by_layer("route"), key=lambda p: p["order"])),
+        "{{HILL}}": list_item(palmer, color("hill")) + "\n" + dorm_line,
+        "{{EXTRAS}}": "\n".join(list_item(p, color("extras")) for p in by_layer("extras")),
+        "{{FOOD}}": "\n".join(list_item(p, color("food")) for p in by_layer("food")),
         "{{LEAFLET_DATA}}": json.dumps({"places": data["places"], "layers": data["layers"], "routes": routes}) if not mid else "null",
     }
     for k, v in replacements.items():

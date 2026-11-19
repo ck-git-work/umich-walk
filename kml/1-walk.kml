@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2"><Document>
-<name>The walk (numbered stops)</name>
+<name>Suggested stops</name>
 <Style id="pin"><IconStyle><color>ff4C2700</color><scale>1.1</scale><Icon><href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href></Icon></IconStyle></Style>
-<Style id="line"><LineStyle><color>e605CBFF</color><width>6</width></LineStyle></Style>
+<Style id="line"><LineStyle><color>e64C2700</color><width>6</width></LineStyle></Style>
 <Placemark><name>1 · Start: S Main &amp; E William</name><styleUrl>#pin</styleUrl><description><![CDATA[Start here, downtown. Head north on Main Street.]]></description><Point><coordinates>-83.74845,42.27884,0</coordinates></Point></Placemark>
 <Placemark><name>2 · Main Street (turn at Kingsley)</name><styleUrl>#pin</styleUrl><description><![CDATA[Main Street is the more grown-up side of Ann Arbor: restaurants, bars and shops. Walk north until Kingsley St, then turn right (east).]]></description><Point><coordinates>-83.7486,42.2849,0</coordinates></Point></Placemark>
 <Placemark><name>3 · Zingerman&#x27;s Deli</name><styleUrl>#pin</styleUrl><description><![CDATA[A classic. If College GameDay is ever in Ann Arbor, you'll see a shot of Zingerman's. A great deli, and a good place to stop for a meal if you're hungry.<br><br>422 Detroit St]]></description><Point><coordinates>-83.74515,42.2847,0</coordinates></Point></Placemark>
