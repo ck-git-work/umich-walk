@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"><Document>
+<name>Food (budget classics)</name>
+<Style id="pin"><IconStyle><color>ff0051E6</color><scale>1.1</scale><Icon><href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href></Icon></IconStyle></Style>
+<Style id="line"><LineStyle><color>e60051E6</color><width>4</width></LineStyle></Style>
+<Placemark><name>Zingerman&#x27;s Deli</name><styleUrl>#pin</styleUrl><description><![CDATA[The classic (also stop 3).<br><br>422 Detroit St]]></description><Point><coordinates>-83.74515,42.2847,0</coordinates></Point></Placemark>
+<Placemark><name>Cottage Inn Pizza</name><styleUrl>#pin</styleUrl><description><![CDATA[Classic undergrad pizza.<br><br>546 Packard St]]></description><Point><coordinates>-83.74213,42.27197,0</coordinates></Point></Placemark>
+<Placemark><name>Pizza House</name><styleUrl>#pin</styleUrl><description><![CDATA[Great undergrad food, a block off the East University leg.<br><br>618 Church St]]></description><Point><coordinates>-83.73479,42.27419,0</coordinates></Point></Placemark>
+<Placemark><name>Frita Batidos</name><styleUrl>#pin</styleUrl><description><![CDATA[A newer place that's good. Cuban-inspired street food, downtown.<br><br>117 W Washington St]]></description><Point><coordinates>-83.74936,42.28041,0</coordinates></Point></Placemark>
+<Placemark><name>Michigan Union</name><styleUrl>#pin</styleUrl><description><![CDATA[Some food options inside (also stop 15).<br><br>530 S State St]]></description><Point><coordinates>-83.74151,42.27517,0</coordinates></Point></Placemark>
+</Document></kml>

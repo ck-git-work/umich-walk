@@ -1,0 +1,17 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Route check</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>html,body,#m{height:100%;margin:0}</style></head>
+<body><div id="m"></div><script>
+const m = L.map('m').setView([42.278, -83.740], 15);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: '© OpenStreetMap'}).addTo(m);
+const colors = {route: '#d4a100', hill: '#2E7D32', extras: '#6A1B9A'};
+Promise.all([fetch('routes.geojson').then(r => r.json()), fetch('../places.json').then(r => r.json())]).then(([g, p]) => {
+  const gl = L.geoJSON(g, {style: f => ({color: colors[f.properties.layer], weight: 5, dashArray: f.properties.id === 'main' ? null : '8 8'})}).addTo(m);
+  p.places.forEach(x => L.circleMarker([x.lat, x.lng], {radius: 7, color: '#' + p.layers[x.layer].color, fillOpacity: .9})
+    .bindTooltip((x.order ? x.order + ' ' : '') + x.name, {permanent: !!x.order, direction: 'right'}).addTo(m));
+  m.fitBounds(gl.getBounds());
+  window.ready = true;
+});
+</script></body></html>
