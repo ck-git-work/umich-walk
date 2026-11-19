@@ -33,6 +33,10 @@
   .addr { color: var(--muted); }
   .dorms { font-size: .95rem; }
   a { color: var(--link); }
+  .key { display: flex; flex-direction: column; gap: 4px; padding: 10px 0 2px; font-size: .85rem; color: var(--muted); }
+  .k { display: flex; align-items: center; gap: 2px; }
+  .k svg { flex: none; }
+  .k .d { margin: 0 8px 0 3px; }
 </style>
 </head>
 <body>
@@ -44,6 +48,9 @@
 {{MAP}}
 
 <main>
+  <div class="key">
+{{KEY}}
+  </div>
   <a class="open" href="{{OPEN_URL}}" target="_blank" rel="noopener"{{OPEN_HIDDEN}}>Open in Google Maps while walking ↗</a>
 
   <h2>Suggested stops</h2>

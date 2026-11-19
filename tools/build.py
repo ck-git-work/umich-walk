@@ -77,6 +77,19 @@ def list_item(p, color, numbered=False):
     return f"<li>{marker}<span><b>{e(p['name'])}</b>{addr}.{note}</span></li>"
 
 
+def map_key(data, routes):
+    """Legend under the map: a dotted-line sample for layers with a route line, then a dot."""
+    has_line = {f["properties"]["layer"] for f in routes["features"]}
+    rows = []
+    for lid, layer in data["layers"].items():
+        c = "#" + layer["color"]
+        line = (f'<svg width="22" height="10" aria-hidden="true"><line x1="3" y1="5" x2="19" y2="5" stroke="{c}" '
+                f'stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 7"/></svg>' if lid in has_line
+                else '<svg width="22" height="10" aria-hidden="true"></svg>')
+        rows.append(f'<span class="k">{line}<span class="d" style="background:{c}"></span>{html.escape(layer["key"])}</span>')
+    return "\n".join(rows)
+
+
 def build_page(data, routes):
     tmpl = (ROOT / "tools" / "page_template.html").read_text(encoding="utf-8")
     by_layer = lambda lid: [p for p in data["places"] if p["layer"] == lid]
@@ -101,6 +114,7 @@ def build_page(data, routes):
         "{{TITLE}}": html.escape(data["title"]),
         "{{INTRO}}": html.escape(data.get("intro", "")),
         "{{MAP}}": map_block,
+        "{{KEY}}": map_key(data, routes),
         "{{OPEN_URL}}": open_url,
         "{{OPEN_HIDDEN}}": "" if mid else " hidden",
         "{{WALK_MI}}": f"{walk_mi:.1f}",

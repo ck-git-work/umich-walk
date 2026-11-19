@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2"><Document>
-<name>Hill dorms (optional detour)</name>
+<name>Hill dorms (optional)</name>
 <Style id="pin"><IconStyle><color>ff327D2E</color><scale>1.1</scale><Icon><href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href></Icon></IconStyle></Style>
 <Style id="line"><LineStyle><color>e6327D2E</color><width>4</width></LineStyle></Style>
-<Placemark><name>Palmer Field</name><styleUrl>#pin</styleUrl><description><![CDATA[The main freshman dorms are all around this field. This is where Will might live freshman year.]]></description><Point><coordinates>-83.73271,42.28066,0</coordinates></Point></Placemark>
+<Placemark><name>Palmer Field</name><styleUrl>#pin</styleUrl><description><![CDATA[The main freshman dorms are all around this field. If Will lives in the dorms freshman year, in all likelihood it'll be one of the ones up here on what's called the Hill.]]></description><Point><coordinates>-83.73271,42.28066,0</coordinates></Point></Placemark>
 <Placemark><name>Stockwell</name><styleUrl>#pin</styleUrl><description><![CDATA[]]></description><Point><coordinates>-83.73177,42.27886,0</coordinates></Point></Placemark>
 <Placemark><name>Mosher-Jordan (MoJo)</name><styleUrl>#pin</styleUrl><description><![CDATA[]]></description><Point><coordinates>-83.7317,42.28015,0</coordinates></Point></Placemark>
 <Placemark><name>Alice Lloyd</name><styleUrl>#pin</styleUrl><description><![CDATA[]]></description><Point><coordinates>-83.73176,42.28125,0</coordinates></Point></Placemark>
