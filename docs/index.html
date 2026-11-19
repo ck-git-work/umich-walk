@@ -37,6 +37,15 @@
   .k { display: flex; align-items: center; gap: 2px; }
   .k svg { flex: none; }
   .k .d { margin: 0 8px 0 3px; }
+  #leaflet { --pin: 22px; }
+  .pin { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); }
+  .pin .b { position: relative; width: var(--pin); height: var(--pin); border-radius: 50%; color: #fff;
+            border: 2px solid #fff; box-sizing: border-box; display: grid; place-items: center;
+            font: 700 calc(var(--pin) * .5)/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            box-shadow: 0 1px 3px #0006; }
+  .pin.dot .b { width: calc(var(--pin) * .7); height: calc(var(--pin) * .7); }
+  .pin .fb { position: absolute; top: -4px; right: -5px; width: calc(var(--pin) * .45); height: calc(var(--pin) * .45);
+             border-radius: 50%; border: 1.5px solid #fff; box-sizing: border-box; }
   .fd { display: inline-block; width: 9px; height: 9px; margin: 0 1px 1px 3px; border-radius: 50%; vertical-align: middle; }
 </style>
 </head>
@@ -58,7 +67,7 @@
   <a class="open" href="#" target="_blank" rel="noopener" hidden>Open in Google Maps while walking ↗</a>
 
   <h2>Suggested stops</h2>
-  <p class="sub">4.1 miles, about 2½–3 hours with stops. Starts and ends at Main &amp; William.</p>
+  <p class="sub">4.1 miles, about 2½–3 hours with stops. You don't need to start where I suggest, but that was just my thought process going through it.</p>
   <ol>
 <li><span class="n">1</span><span><b>Start: S Main &amp; E William</b>.</span></li>
 <li><span class="n">2</span><span><b>Main Street</b>. Downtown is the more grown-up part of Ann Arbor. I&#x27;d think of it as where you and Caitlin would come if Will ended up going here, or where you&#x27;d go if you wanted to take Will out somewhere nicer than a typical college-town restaurant.</span></li>
@@ -128,12 +137,19 @@
         dashArray: f.properties.id === 'main' ? '1 9' : '1 8' }) }).addTo(m);
       DATA.places.forEach(p => {
         const c = '#' + DATA.layers[p.layer].color;
-        const size = p.order ? 18 : 12;
-        const badge = p.food ? `<div style="position:absolute;top:-4px;right:-5px;width:9px;height:9px;border-radius:50%;background:#${DATA.layers.food.color};border:1.5px solid #fff"></div>` : '';
-        const icon = L.divIcon({ className: '', iconSize: [size, size], iconAnchor: [size / 2, size / 2],
-          html: `<div style="position:relative;width:${size}px;height:${size}px;border-radius:50%;background:${c};color:#fff;border:1.5px solid #fff;display:grid;place-items:center;font:700 10px sans-serif;box-shadow:0 1px 2px #0005">${p.order || ''}${badge}</div>` });
+        const badge = p.food ? `<div class="fb" style="background:#${DATA.layers.food.color}"></div>` : '';
+        // Zero-size icon anchored on the point; CSS centers the pin and sizes it from --pin.
+        const icon = L.divIcon({ className: '', iconSize: [0, 0], iconAnchor: [0, 0],
+          html: `<div class="pin${p.order ? '' : ' dot'}"><div class="b" style="background:${c}">${p.order || ''}${badge}</div></div>` });
         L.marker([p.lat, p.lng], { icon }).bindPopup(`<b>${p.order ? p.order + '. ' : ''}${p.name}</b>${p.note ? '<br>' + p.note : ''}`).addTo(m);
       });
+      // Pins grow as you zoom in so the numbers stay readable at street level.
+      const sizePins = () => {
+        const z = m.getZoom();
+        m.getContainer().style.setProperty('--pin', (z >= 17 ? 34 : z >= 16 ? 29 : z >= 15 ? 25 : 22) + 'px');
+      };
+      m.on('zoomend', sizePins);
+      sizePins();
     };
     document.head.appendChild(s);
   }
